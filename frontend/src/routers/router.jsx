@@ -1,11 +1,11 @@
 import {createBrowserRouter} from "react-router-dom";
 import App from "../App";
-import Home from "../pages/home/Home";
-import CategoriesPage from "../pages/category/CategoriesPage";
-import Search from "../pages/search/Search";
-import ShopPage from "../pages/shop/ShopPage";
-import SingleProduct from "../pages/shop/productDetails/SingleProduct";
-import Login from "../components/Login";
+import Home from "../pages/home/Home.jsx";
+import CategoriesPage from "../pages/category/CategoriesPage.jsx";
+import Search from "../pages/search/Search.jsx";
+import ShopPage from "../pages/shop/ShopPage.jsx";
+import SingleProduct from "../pages/shop/productDetails/SingleProduct.jsx";
+import Login from "../components/Login.jsx";
 const router = createBrowserRouter([
     {
         path:"/",

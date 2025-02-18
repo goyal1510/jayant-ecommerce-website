@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useDispatch } from "react-redux";
-import { removeFromCart, increaseQuantity, decreaseQuantity } from "../../redux/features/cart/cartSlice";
-import OrderSummary from "./OrderSummary";
+import { removeFromCart, increaseQuantity, decreaseQuantity } from "../../redux/features/cart/cartSlice.js";
+import OrderSummary from "./OrderSummary.jsx";
 
 const CartModel = ({ products, isOpen, onClose }) => {
     const dispatch = useDispatch();

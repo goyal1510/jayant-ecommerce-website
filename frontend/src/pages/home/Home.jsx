@@ -1,10 +1,10 @@
-import TrendingProducts from "../shop/TrendingProducts"
-import Banner from "./Banner"
-import Categories from "./Categories"
-import HeroSection from "./HeroSection"
-import DealsSection from "./DealsSection"
-import PromoBanner from "./PromoBanner"
-import Blogs from "../blogs/Blogs"
+import TrendingProducts from "../shop/TrendingProducts.jsx"
+import Banner from "./Banner.jsx"
+import Categories from "./Categories.jsx"
+import HeroSection from "./HeroSection.jsx"
+import DealsSection from "./DealsSection.jsx"
+import PromoBanner from "./PromoBanner.jsx"
+import Blogs from "../blogs/Blogs.jsx"
 import { useEffect } from "react";
 const Home = () => {
   useEffect(()=>{ 

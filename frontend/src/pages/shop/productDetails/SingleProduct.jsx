@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import {Link} from "react-router-dom";
 import products from "../../../data/products.json"
 import { useEffect,useState } from "react";
-import RatingStars from "../../../components/RatingStars";
+import RatingStars from "../../../components/RatingStars.jsx";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../../redux/features/cart/cartSlice";
+import { addToCart } from "../../../redux/features/cart/cartSlice.js";
 
 const SingleProduct = () => {
     const {id} = useParams();

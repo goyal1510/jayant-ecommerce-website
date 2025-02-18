@@ -1,6 +1,6 @@
 import { useState } from "react"
 import products from "../../data/products.json";
-import ProductCards from "../shop/ProductCards";
+import ProductCards from "../shop/ProductCards.jsx";
 
 
 const Search = () => {

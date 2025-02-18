@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ProductCards from "./ProductCards"
+import ProductCards from "./ProductCards.jsx"
 import products from "../../data/products.json"
 const TrendingProducts = () => {
 

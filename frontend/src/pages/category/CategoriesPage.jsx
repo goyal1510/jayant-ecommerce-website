@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import products from '../../data/products.json';
-import ProductCards from '../shop/ProductCards';
+import ProductCards from '../shop/ProductCards.jsx';
 const CategoriesPage = () => {
     const { categoryName } = useParams();
     const [fproducts, setFProducts] = useState([]);
