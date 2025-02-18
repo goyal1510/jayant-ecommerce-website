@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import CartModel from "../pages/shop/CartModel.jsx";
 
-const NavBar = () => {
+const Navbar = () => {
     const cartState = useSelector((state) => state.cart);
 
     const [isCartOpen, setIsCartOpen]   = useState(false);
@@ -62,4 +62,4 @@ const NavBar = () => {
 }
 
 
-export default NavBar
+export default Navbar
