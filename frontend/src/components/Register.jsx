@@ -1,16 +1,28 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useRegisterUserMutation } from "../redux/features/auth/authApi";
 
 const Register = () => {
     const [message,setMessage] = useState('');
-      const [userName,setUserName]=useState('');
+      const [username,setUsername]=useState('');
       const [email,setEmail]=useState('');
       const [password,setPassword]=useState('');
+      const [registerUser] = useRegisterUserMutation();
+    const navigate = useNavigate();
+
       const handleRegister = async(e) => {
-        e.preventdefault();
+        e.preventDefault();
         const data ={
-          userName,email,password
+          username,email,password
         }
+        try {
+          const response = await registerUser(data).unwrap();
+          alert(`${response.message}`);
+          navigate('/login')
+      
+      } catch (error) {
+        setMessage(`${error.data.message}`)
+      }
       };
   return (
     <section className="h-screen flex items-center justify-center">
@@ -19,10 +31,10 @@ const Register = () => {
         <form onSubmit={handleRegister} className="space-y-5 max-w-sm mx-auto pt-8">
           <input type="text" name="username" id="username"
           placeholder="Username" required
-          className="w-full bg-gray-100 focus:outline-none px-5 py-3" onChange={(e)=>setUserName(e.targer.value)}/>
+          className="w-full bg-gray-100 focus:outline-none px-5 py-3" onChange={(e)=>setUsername(e.target.value)}/>
           <input type="email" name="email" id="email"
           placeholder="Email Address" required
-          className="w-full bg-gray-100 focus:outline-none px-5 py-3" onChange={(e)=>setEmail(e.targer.value)}/>
+          className="w-full bg-gray-100 focus:outline-none px-5 py-3" onChange={(e)=>setEmail(e.target.value)}/>
           <input type="password" name="password" id="password" 
           placeholder="Password" required
           className="w-full bg-gray-100 focus:outline-none px-5 py-3" onChange={(e)=>setPassword(e.target.value)}/>
