@@ -1,4 +1,4 @@
 export const getBaseUrl = ()=>{
-    return "http://localhost:5000";
+    return "https://jayant-ecommerce-website-backend.vercel.app/";
 }
 
