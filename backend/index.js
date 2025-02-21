@@ -40,7 +40,7 @@ app.listen(PORT,()=>{
     console.log(`The app is running on port: ${PORT}`);
 })
 
-app.get("/",(req,res)=>{
+app.get("/hello",(req,res)=>{
     res.send("Hello World!!")
 })
 
