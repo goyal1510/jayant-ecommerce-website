@@ -15,11 +15,25 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
-  cors({
-    origin: process.env.FRONTEND_URL || "https://jayant-ecommerce-website.vercel.app",
-    credentials: true,
-  })
-);
+    cors({
+      origin: process.env.FRONTEND_URL || "https://jayant-ecommerce-website.vercel.app",
+      credentials: true,
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      allowedHeaders: "Content-Type,Authorization",
+    })
+  );
+  
+  // ✅ Fix issue where headers might not be set
+  app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL || "https://jayant-ecommerce-website.vercel.app");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    if (req.method === "OPTIONS") {
+      return res.sendStatus(200);
+    }
+    next();
+  });
 
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
