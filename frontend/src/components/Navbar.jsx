@@ -23,7 +23,7 @@ const Navbar = () => {
     // show user if logged in
     const dispatch =  useDispatch();
     const { user } = useSelector((state) => state.auth);
-    console.log(user);
+    // console.log(user);
     // dropdown menus
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
