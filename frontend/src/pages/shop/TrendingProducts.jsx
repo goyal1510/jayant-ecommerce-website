@@ -1,12 +1,13 @@
 import { useState } from "react";
 import ProductCards from "./ProductCards.jsx"
-import products from "../../data/products.json"
+import { useFetchAllProductsQuery } from "../../redux/features/products/productsApi.js";
 const TrendingProducts = () => {
 
     const [visible, setVisible] = useState(8);
     const loadMore = () => {
         setVisible(visible => visible + 4);
     }
+    const { data: { products = []} = {}} = useFetchAllProductsQuery({})
   return (
     <section className="section__container product__container">
         <h2 className="section__header">Trending Products</h2>

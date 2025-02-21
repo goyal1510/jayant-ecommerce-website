@@ -28,14 +28,14 @@ app.use((req,res,next)=>{
 // All routes
 
 const authRoutes = require("./src/users/user.routes.js")
+const productRoutes = require("./src/products/products.routes.js")
 app.use('/api/auth',authRoutes);
-
-main().then(()=>{console.log("MongoDB is connected Succesfully.");}).catch(err => console.log(err));
+app.use('/api/product',productRoutes);
 
 async function main(){
     await mongoose.connect(process.env.DB_URL);
 }
-
+main().then(()=>{console.log("MongoDB is connected Succesfully.");}).catch(err => console.log(err));
 app.listen(PORT,()=>{
     console.log(`The app is running on port: ${PORT}`);
 })
