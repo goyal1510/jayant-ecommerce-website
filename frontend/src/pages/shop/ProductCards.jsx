@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RatingStars from "../../components/RatingStars.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice.js";
@@ -11,6 +11,7 @@ const API_URL = getBaseUrl ? `${getBaseUrl}/api/cart/add` : "http://localhost:50
 
 const ProductCards = ({ products }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     // const handleAddToCart = (product) => {
     //     dispatch(addToCart(product));
     // }
@@ -28,6 +29,7 @@ const ProductCards = ({ products }) => {
             }
         }else{
             alert("Please login to add items to cart");
+            navigate("/login");
         }
         
     };
