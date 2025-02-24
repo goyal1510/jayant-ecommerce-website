@@ -9,6 +9,7 @@ router.get("/", verifyToken,async (req, res) => {
 
     try {
         const cartItems = await Cart.find({ userId: req.userId });
+        console.log("cart items : ",cartItems);
         res.status(200).json(cartItems);
     } catch (error) {
         res.status(500).json({ message: "Error fetching cart", error });
@@ -19,8 +20,8 @@ router.post("/add", verifyToken, async (req, res) => {
     const userId = req.userId;
     
     try {
-        let cartItem = await Cart.findOne({ productId });
-        console.log(cartItem)
+        let cartItem = await Cart.findOne({ userId,productId });
+        console.log("cart items : ",cartItem);
 
         if (cartItem) {
             cartItem.quantity += quantity;
