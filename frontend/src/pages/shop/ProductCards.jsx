@@ -2,7 +2,7 @@
 
 import { Link } from "react-router-dom";
 import RatingStars from "../../components/RatingStars.jsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice.js";
 import axios from "axios";
 import { getBaseUrl } from "../../utils/baseURL.js";
@@ -14,16 +14,22 @@ const ProductCards = ({ products }) => {
     // const handleAddToCart = (product) => {
     //     dispatch(addToCart(product));
     // }
+    const { user } = useSelector((state) => state.auth);
     const handleAddToCart = async (product) => {
-        try {
-            const response = await axios.post(API_URL, 
-                { productId: product._id, name: product.name, price: product.price, image: product.image, quantity: 1 }, 
-                { withCredentials: true }
-            );
-            dispatch(addToCart(response.data));
-        } catch (error) {
-            console.error("Error adding to cart:", error.response?.data || error.message);
+        if(user){
+            try {
+                const response = await axios.post(API_URL, 
+                    { productId: product._id, name: product.name, price: product.price, image: product.image, quantity: 1 }, 
+                    { withCredentials: true }
+                );
+                dispatch(addToCart(response.data));
+            } catch (error) {
+                console.error("Error adding to cart:", error.response?.data || error.message);
+            }
+        }else{
+            alert("Please login to add items to cart");
         }
+        
     };
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
