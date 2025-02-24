@@ -24,7 +24,6 @@ const Login = () => {
        try {
         
         const response = await loginUser(data).unwrap();
-        alert(`${response.message}`);
         const {user} = response;
         disptach(setUser({user}))
         navigate("/")

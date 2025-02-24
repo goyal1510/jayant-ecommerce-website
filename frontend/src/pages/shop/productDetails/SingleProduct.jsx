@@ -1,20 +1,40 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import RatingStars from '../../../components/RatingStars';
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import { useFetchProductByIdQuery } from '../../../redux/features/products/productsApi';
 import { addToCart } from '../../../redux/features/cart/cartSlice';
+import axios from "axios";
+import { getBaseUrl } from "../../utils/baseURL.js";
+
+const API_URL = getBaseUrl ? `${getBaseUrl}/api/cart/add` : "http://localhost:5000/api/cart";
 
 const SingleProduct = () => {
     const {id} = useParams();
-
+    const { user } = useSelector((state) => state.auth);
     const dispatch =  useDispatch();
     const {data, error, isLoading} = useFetchProductByIdQuery(id);
+    const navigate = useNavigate()
    
     const singleProduct = data?.product || {};
 
-    const handleAddToCart = (product) => {
-        dispatch(addToCart(product))
-    }
+    const handleAddToCart = async (product) => {
+        if(user){
+            try {
+                const response = await axios.post(API_URL, 
+                    { productId: product._id, name: product.name, price: product.price, image: product.image, quantity: 1 }, 
+                    { withCredentials: true }
+                );
+                dispatch(addToCart(response.data));
+            } catch (error) {
+                console.error("Error adding to cart:", error.response?.data || error.message);
+            }
+        }else{
+            alert("Please login to add items to cart");
+            navigate("/login");
+
+        }
+        
+    };
 
     if(isLoading) return <p>Loading...</p>
     if(error) return <p>Error loading product details.</p>
