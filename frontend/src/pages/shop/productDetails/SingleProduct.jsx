@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux"
 import { useFetchProductByIdQuery } from '../../../redux/features/products/productsApi';
 import { addToCart } from '../../../redux/features/cart/cartSlice';
 import axios from "axios";
-import { getBaseUrl } from "../../utils/baseURL.js";
+import { getBaseUrl } from "../../../utils/baseURL.js";
 
 const API_URL = getBaseUrl ? `${getBaseUrl}/api/cart/add` : "http://localhost:5000/api/cart";
 

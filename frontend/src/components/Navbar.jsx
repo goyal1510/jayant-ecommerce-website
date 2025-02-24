@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom"
 import CartModel from "../pages/shop/CartModel.jsx";
 import avatarImg from "../assets/avatar.png"
 import { useLogoutUserMutation } from "../redux/features/auth/authApi.js";
 import { logout } from "../redux/features/auth/authSlice.js";
+import axios from "axios";
+import { clearCart, setCart } from "../redux/features/cart/cartSlice.js";
+import { getBaseUrl } from "../utils/baseURL.js";
+
+const API_URL = getBaseUrl ? `${getBaseUrl}/api/cart` : "http://localhost:5000/api/cart";
 const Navbar = () => {
     const cartState = useSelector((state) => state.cart);
 
@@ -52,12 +57,29 @@ const Navbar = () => {
     const handleLogout = async () => {
         try {
             await logoutUser().unwrap();
-            dispatch(logout())
-            navigate('/')
+            dispatch(clearCart()); // Clear the cart on logout
+        dispatch(logout()); // Ensure user auth state is cleared
+        navigate("/");
         } catch (error) {
             console.error("Failed to log out", error)
         }
     }
+
+    useEffect(() => {
+        const fetchCart = async () => {
+            if (user) {
+                try {
+                    const response = await axios.get(`${API_URL}`, { withCredentials: true });
+                    dispatch(setCart(response.data));
+                } catch (error) {
+                    console.error("Error fetching cart:", error);
+                }
+            }
+        };
+
+        fetchCart();
+    }, [user, dispatch]);  // Runs when user state changes
+
     return (
         <header className="fixed-nav-bar w-nav">
             <nav className="max-w-screen-2xl mx-auto px-4 flex justify-between items-center">
