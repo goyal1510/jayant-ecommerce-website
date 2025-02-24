@@ -5,6 +5,9 @@ import RatingStars from "../../components/RatingStars.jsx";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice.js";
 import axios from "axios";
+import { getBaseUrl } from "../../utils/baseURL.js";
+
+const API_URL = getBaseUrl ? `${getBaseUrl}/api/cart/add` : "http://localhost:5000/api/cart";
 
 const ProductCards = ({ products }) => {
     const dispatch = useDispatch();
@@ -13,7 +16,7 @@ const ProductCards = ({ products }) => {
     // }
     const handleAddToCart = async (product) => {
         try {
-            const response = await axios.post("http://localhost:5000/api/cart/add", 
+            const response = await axios.post(API_URL, 
                 { productId: product._id, name: product.name, price: product.price, image: product.image, quantity: 1 }, 
                 { withCredentials: true }
             );
