@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import CartModel from "../pages/shop/CartModel.jsx";
 import avatarImg from "../assets/avatar.png"
 import { useLogoutUserMutation } from "../redux/features/auth/authApi.js";
-import { logout } from "../redux/features/auth/authSlice.js";
+import { logout, setUser } from "../redux/features/auth/authSlice.js";
 import axios from "axios";
 import { clearCart, setCart } from "../redux/features/cart/cartSlice.js";
 import { getBaseUrl } from "../utils/baseURL.js";
@@ -57,8 +57,10 @@ const Navbar = () => {
     const handleLogout = async () => {
         try {
             await logoutUser().unwrap();
-            dispatch(clearCart()); // Clear the cart on logout
-        dispatch(logout()); // Ensure user auth state is cleared
+
+            dispatch(clearCart());
+        dispatch(logout()); 
+        dispatch(setUser({user: null}));
         navigate("/");
         } catch (error) {
             console.error("Failed to log out", error)
@@ -78,7 +80,7 @@ const Navbar = () => {
         };
 
         fetchCart();
-    }, [user, dispatch]);  // Runs when user state changes
+    }, [user, dispatch]); 
 
     return (
         <header className="fixed-nav-bar w-nav">
