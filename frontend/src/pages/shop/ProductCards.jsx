@@ -4,12 +4,24 @@ import { Link } from "react-router-dom";
 import RatingStars from "../../components/RatingStars.jsx";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice.js";
+import axios from "axios";
 
 const ProductCards = ({ products }) => {
     const dispatch = useDispatch();
-    const handleAddToCart = (product) => {
-        dispatch(addToCart(product));
-    }
+    // const handleAddToCart = (product) => {
+    //     dispatch(addToCart(product));
+    // }
+    const handleAddToCart = async (product) => {
+        try {
+            const response = await axios.post("http://localhost:5000/api/cart/add", 
+                { productId: product._id, name: product.name, price: product.price, image: product.image, quantity: 1 }, 
+                { withCredentials: true }
+            );
+            dispatch(addToCart(response.data));
+        } catch (error) {
+            console.error("Error adding to cart:", error.response?.data || error.message);
+        }
+    };
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
             {

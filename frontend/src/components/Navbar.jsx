@@ -82,7 +82,7 @@ const Navbar = () => {
                         <button onClick={handleCartToggle} className="hover:text-primary">
                             <i className="ri-shopping-cart-fill"></i>
                             <sup className="text-sm inline-block px-1.5 text-white rounded-full bg-primary text-center">
-                                {cartState.products.length}
+                                {cartState.items.length}
 
                             </sup>
                         </button>
@@ -124,7 +124,8 @@ const Navbar = () => {
                 </div>
             </nav>
             {
-                isCartOpen && <CartModel products={cartState.products} isOpen={isCartOpen} onClose={handleCartToggle} />
+                // isCartOpen && <CartModel products={cartState.items} isOpen={isCartOpen} onClose={handleCartToggle} />
+                isCartOpen && <CartModel isOpen={isCartOpen} onClose={handleCartToggle} />
             }
         </header>
     )

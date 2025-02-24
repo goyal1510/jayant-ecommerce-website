@@ -4,7 +4,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const verifyToken = (req, res, next) => {
     try {
-        console.log(req.cookies);
+        console.log("Cookies: ",req.cookies);
         if (!req.cookies) {
             return res.status(401).send({ message: "No cookies found" });
         }
