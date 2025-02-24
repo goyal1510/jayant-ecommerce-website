@@ -2,7 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../redux/features/cart/cartSlice.js";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/cart";
+import { getBaseUrl } from "../../utils/baseURL.js";
+
+const API_URL = getBaseUrl ? `${getBaseUrl}/api/cart` : "http://localhost:5000/api/cart";
 
 const OrderSummary = () => {
     const cartState = useSelector((state) => state.cart);
