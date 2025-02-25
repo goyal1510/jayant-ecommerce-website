@@ -6,8 +6,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { getBaseUrl } from "../../utils/baseURL.js";
 
-// Ensure getBaseUrl() is called correctly to get the base URL
-const API_URL = getBaseUrl() ? `${getBaseUrl()}/api/cart` : "http://localhost:5000/api/cart";
+const API_URL = getBaseUrl ? `${getBaseUrl}/api/cart` : "http://localhost:5000/api/cart";
 
 const CartModel = ({ isOpen, onClose }) => {
     const dispatch = useDispatch();
