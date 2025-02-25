@@ -76,10 +76,10 @@ npm start
 
 
 ## Screenshots
-(jayant-ecommerce-website\Screenshots\Homepage.png)
+![Home Page](.\Screenshots\Homepage.png)
 
 ## Deployment
-
+🔗 Live Demo: [Jayant E-Commerce](https://jayant-ecommerce-website.vercel.app/)
 
 ## Contribution
 Feel free to fork this repository and contribute to the project. Open an issue or submit a pull request with improvements.
