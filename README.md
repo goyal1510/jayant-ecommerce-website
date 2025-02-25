@@ -76,7 +76,7 @@ npm start
 
 
 ## Screenshots
-(![Home Page](./Screenshots/Homepage.png))
+![Home Page](./Screenshots/Homepage.png)
 
 ## Deployment
 🔗 Live Demo: [Jayant E-Commerce](https://jayant-ecommerce-website.vercel.app/)
