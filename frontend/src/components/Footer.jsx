@@ -5,8 +5,8 @@ import instagram4 from "../assets/instagram-4.jpg"
 import instagram5 from "../assets/instagram-5.jpg"
 import instagram6 from "../assets/instagram-6.jpg"
 
-
 const Footer = () => {
+  // Function to smoothly scroll to the Blogs section
   const scrollToBlogs = (e) => {
     e.preventDefault();
     const blogsSection = document.getElementById('blogs');
@@ -18,32 +18,34 @@ const Footer = () => {
   return (
     <>
       <footer className="section__container footer__container">
+        {/* Contact Section */}
         <div id="contact" className="footer__col">
           <h4>CONTACT US</h4>
           <p>
-            <span><i className="ri-map-pin-2-fill"></i>
-            </span>
+            <span><i className="ri-map-pin-2-fill"></i></span>
             Sri Ganganagar, Rajasthan, India
           </p>
           <p>
-            <span><i className="ri-mail-fill"></i>
-            </span>
+            <span><i className="ri-mail-fill"></i></span>
             info@jayant.org.in
           </p>
           <p>
-            <span><i className="ri-phone-fill"></i>
-            </span>
+            <span><i className="ri-phone-fill"></i></span>
             +91 9413495328
           </p>
         </div>
+
+        {/* Company Links */}
         <div className="footer__col">
           <h4>COMPANY</h4>
           <a href="/">Home</a>
           <a href="/">About Us</a>
           <a href="/">Work With Us</a>
-          <a href="#blogs" onClick={scrollToBlogs}>Our Blogs</a>
+          <a href="#blogs" onClick={scrollToBlogs}>Our Blogs</a> {/* Smooth scroll to blogs */}
           <a href="/">Terms & Condition</a>
         </div>
+
+        {/* Useful Links */}
         <div className='footer__col'>
           <h4>USEFUL LINK</h4>
           <a href="/">Help</a>
@@ -52,6 +54,8 @@ const Footer = () => {
           <a href="/">Women</a>
           <a href="/">Dresses</a>
         </div>
+
+        {/* Instagram Image Grid */}
         <div className='footer_col'>
           <h4>INSTAGRAM</h4>
           <div className="instagram__grid">
@@ -64,6 +68,8 @@ const Footer = () => {
           </div>
         </div>
       </footer>
+
+      {/* Footer Bar */}
       <div className="footer__bar">
         Copyright © 2025 All Rights Reserved By Jayant.
       </div>

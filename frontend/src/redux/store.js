@@ -5,12 +5,17 @@ import authReducer from "./features/auth/authSlice"
 import productsApi from './features/products/productsApi.js'
 
 export const store = configureStore({
-  reducer: {
-    cart: cartReducer,
-    [authApi.reducerPath]: authApi.reducer,
-    [productsApi.reducerPath]:productsApi.reducer,
-    auth: authReducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware,productsApi.middleware),
+    reducer: {
+        // Reducer for the cart slice.
+        cart: cartReducer,
+        // Reducer for the auth API slice.
+        [authApi.reducerPath]: authApi.reducer,
+        // Reducer for the products API slice.
+        [productsApi.reducerPath]: productsApi.reducer,
+        // Reducer for the authentication slice.
+        auth: authReducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+        // Concatenate the default middleware with the authApi and productsApi middleware.
+        getDefaultMiddleware().concat(authApi.middleware, productsApi.middleware),
 })

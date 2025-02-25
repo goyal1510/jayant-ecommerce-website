@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import ProductCards from './ProductCards';
 import ShopFiltering from './ShopFiltering';
 import { useFetchAllProductsQuery } from '../../redux/features/products/productsApi';
@@ -15,7 +14,6 @@ const filters = {
     ]
 };
 
-
 const ShopPage = () => {
     const [filtersState, setFiltersState] = useState({
         category: 'all',
@@ -29,6 +27,7 @@ const ShopPage = () => {
     const { category, color, priceRange } = filtersState;
     const [minPrice, maxPrice] = priceRange.split('-').map(Number);
 
+    // Fetch products based on filters and pagination
     const { data: { products = [], totalPages, totalProducts } = {}, error, isLoading } = useFetchAllProductsQuery({
         category: category !== 'all' ? category : '',
         color: color !== 'all' ? color : '',
@@ -38,7 +37,7 @@ const ShopPage = () => {
         limit: ProductsPerPage,
     })
 
-    // clear the filters
+    // Clear the filters
     const clearFilters = () => {
         setFiltersState({
             category: 'all',
@@ -47,9 +46,9 @@ const ShopPage = () => {
         })
     }
 
-    // handle page change
+    // Handle page change
     const handlePageChange = (pageNumber) => {
-        if(pageNumber > 0 && pageNumber <= totalPages) {
+        if (pageNumber > 0 && pageNumber <= totalPages) {
             setCurrentPage(pageNumber)
         }
     }
@@ -57,6 +56,7 @@ const ShopPage = () => {
     if (isLoading) return <div>Loading....</div>
     if (error) return <div>Error loading products.</div>
 
+    // Calculate product range for display
     const startProduct = (currentPage - 1) * ProductsPerPage + 1;
     const endProduct = startProduct + products.length - 1;
 
@@ -69,7 +69,7 @@ const ShopPage = () => {
 
             <section className='section__container'>
                 <div className='flex flex-col md:flex-row md:gap-12 gap-8'>
-                    {/* left side */}
+                    {/* Left side: Filtering component */}
                     <ShopFiltering
                         filters={filters}
                         filtersState={filtersState}
@@ -77,24 +77,25 @@ const ShopPage = () => {
                         clearFilters={clearFilters}
                     />
 
-                    {/* right side */}
+                    {/* Right side: Product display and pagination */}
                     <div>
                         <h3 className='text-xl font-medium mb-4'>
                             Showing {startProduct} to {endProduct} of {totalProducts} products
                         </h3>
                         <ProductCards products={products} />
 
-                        {/* pagination controls */}
+                        {/* Pagination controls */}
                         <div className='mt-6 flex justify-center'>
-                            <button 
-                            disabled={currentPage === 1}
-                            onClick={() => handlePageChange(currentPage - 1)}
-                            className='px-4 py-2 bg-gray-300 text-gray-700 rounded-md mr-2'>Previous</button>
+                            <button
+                                disabled={currentPage === 1}
+                                onClick={() => handlePageChange(currentPage - 1)}
+                                className='px-4 py-2 bg-gray-300 text-gray-700 rounded-md mr-2'>Previous</button>
 
+                            {/* Render page number buttons */}
                             {
                                 [...Array(totalPages)].map((_, index) => (
                                     <button key={index}
-                                    onClick={() => handlePageChange(index + 1)}
+                                        onClick={() => handlePageChange(index + 1)}
                                         className={`px-4 py-2 ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'}
                                         rounded-md mx-1
                                         `}
@@ -102,16 +103,14 @@ const ShopPage = () => {
                                 ))
                             }
 
-                            <button 
-                            disabled={currentPage === totalPages}
-                             onClick={() => handlePageChange(currentPage + 1)}
-                            className='px-4 py-2 bg-gray-300 text-gray-700 rounded-md ml-2'>Next</button>
-
+                            <button
+                                disabled={currentPage === totalPages}
+                                onClick={() => handlePageChange(currentPage + 1)}
+                                className='px-4 py-2 bg-gray-300 text-gray-700 rounded-md ml-2'>Next</button>
                         </div>
                     </div>
                 </div>
             </section>
-
         </>
     )
 }

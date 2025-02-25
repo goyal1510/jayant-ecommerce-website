@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/home/Home.jsx";
 import CategoriesPage from "../pages/category/CategoriesPage.jsx";
@@ -7,44 +7,52 @@ import ShopPage from "../pages/shop/ShopPage.jsx";
 import SingleProduct from "../pages/shop/productDetails/SingleProduct.jsx";
 import Login from "../components/Login.jsx";
 import Register from "../components/Register.jsx";
+
+// Create a router using createBrowserRouter from react-router-dom.
 const router = createBrowserRouter([
     {
-        path:"/",
-        element:<App/>,
-
-        children:[
+        // Root path, renders the App component.
+        path: "/",
+        element: <App />,
+        // Define nested routes within the App component.
+        children: [
             {
-                path:"/",
-                element:<Home/>
+                // Home page route.
+                path: "/",
+                element: <Home />,
             },
             {
-                path:"/categories/:categoryName",
-                element: <CategoriesPage/>
+                // Category page route, with a dynamic categoryName parameter.
+                path: "/categories/:categoryName",
+                element: <CategoriesPage />,
             },
             {
-                path:"/search",
-                element: <Search/>
+                // Search page route.
+                path: "/search",
+                element: <Search />,
             },
             {
-                path:"/shop",
-                element: <ShopPage/>
+                // Shop page route.
+                path: "/shop",
+                element: <ShopPage />,
             },
             {
-                path:"/shop/:id",
-                element: <SingleProduct/>
-            }
-
-
-
-        ]
+                // Single product page route, with a dynamic id parameter.
+                path: "/shop/:id",
+                element: <SingleProduct />,
+            },
+        ],
     },
     {
-        path:"/login",
-        element: <Login/>
+        // Login page route.
+        path: "/login",
+        element: <Login />,
     },
     {
-        path:"/register",
-        element:<Register/>
-    }
-])
+        // Register page route.
+        path: "/register",
+        element: <Register />,
+    },
+]);
+
 export default router;

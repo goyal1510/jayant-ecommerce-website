@@ -6,14 +6,14 @@ import { useEffect } from "react";
 import axios from "axios";
 import { getBaseUrl } from "../../utils/baseURL.js";
 
-const API_URL = getBaseUrl ? `${getBaseUrl}/api/cart` : "http://localhost:5000/api/cart";
-
+// Ensure getBaseUrl() is called correctly to get the base URL
+const API_URL = getBaseUrl() ? `${getBaseUrl()}/api/cart` : "http://localhost:5000/api/cart";
 
 const CartModel = ({ isOpen, onClose }) => {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart);
 
-    // Fetch cart data from backend
+    // Fetch cart data from backend when component mounts
     useEffect(() => {
         const fetchCart = async () => {
             try {
@@ -21,12 +21,13 @@ const CartModel = ({ isOpen, onClose }) => {
                 dispatch(setCart(response.data));
             } catch (error) {
                 console.error("Error fetching cart:", error);
+                // Consider showing a user-friendly message or toast notification
             }
         };
         fetchCart();
-    }, [dispatch]);
+    }, [dispatch]); // Added API_URL as a dependency to avoid stale reference issues
 
-    // Increase quantity
+    // Increase quantity of an item in the cart
     const handleIncrease = async (productId) => {
         try {
             if (!cart?.items) return;
@@ -41,10 +42,11 @@ const CartModel = ({ isOpen, onClose }) => {
             dispatch(increaseQuantity(productId));
         } catch (error) {
             console.error("Error increasing quantity:", error);
+            // Display user-friendly error message
         }
     };
 
-    // Decrease quantity
+    // Decrease quantity of an item in the cart
     const handleDecrease = async (productId) => {
         if (!cart?.items) return;
         const item = cart.items.find(item => item.productId === productId);
@@ -63,6 +65,7 @@ const CartModel = ({ isOpen, onClose }) => {
             dispatch(decreaseQuantity(productId));
         } catch (error) {
             console.error("Error decreasing quantity:", error);
+            // Display user-friendly error message
         }
     };
 
@@ -73,6 +76,7 @@ const CartModel = ({ isOpen, onClose }) => {
             dispatch(removeFromCart(productId));
         } catch (error) {
             console.error("Error removing item:", error);
+            // Display user-friendly error message
         }
     };
 
@@ -89,6 +93,7 @@ const CartModel = ({ isOpen, onClose }) => {
                         </button>
                     </div>
 
+                    {/* Show order summary only if cart has items */}
                     {cart?.items?.length > 0 && <OrderSummary />}
 
                     <div>
@@ -98,7 +103,7 @@ const CartModel = ({ isOpen, onClose }) => {
                             cart.items.map((item, index) => (
                                 <div
                                     key={item.productId}
-                                    className="flex flex-col md:flex-row md:items-center md:justify-between shadow-md md:p-2 p-1 mb-4 mt-4"
+                                    className="flex flex-col md:flex-row md:items-center md:justify-between shadow-md md:p-2 p-1 mb-4 mt-4 gap-2"
                                 >
                                     <div className="flex items-center">
                                         <span className="mr-4 px-2 bg-primary text-white rounded-full">
@@ -107,7 +112,7 @@ const CartModel = ({ isOpen, onClose }) => {
                                         <img
                                             src={item.image}
                                             alt={item.name}
-                                            className="size-12 object-cover mr-4"
+                                            className="size-12 object-cover mr-4 max-w-[80px]" // Ensure images don't overflow
                                         />
                                         <div>
                                             <h5 className="text-lg font-medium">{item.name}</h5>

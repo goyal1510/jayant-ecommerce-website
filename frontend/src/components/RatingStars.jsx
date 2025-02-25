@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 
+const RatingStars = ({ rating }) => {
+  const stars = [];
+  // Generate star icons based on rating.
+  for (let i = 1; i <= 5; i++) {
+    stars.push(
+      <span key={i} className={`ri-star${i <= rating ? '-fill' : '-line'}`}></span>
+    );
+  }
+  return <div className="product__rating">{stars}</div>;
+};
 
-const RatingStars = ({rating}) => {
-    const stars = [];
-    for (let i=1; i<= 5; i++) {
-        stars.push(<span key={i} className={`ri-star${i <= rating?'-fill': '-line'}`}></span> )}
-  return (
-    <div className="product__rating">{stars}</div>
-  )
-}
-
-
-export default RatingStars
+export default RatingStars;
