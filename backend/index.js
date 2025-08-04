@@ -22,7 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Allowed origins for CORS.
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://jayant-ecommerce-website.vercel.app"
+  "https://jayant-ecommerce-website.vercel.app",
+  "https://ecommerce.jayant.org.in"
 ];
 
 // CORS configuration.
