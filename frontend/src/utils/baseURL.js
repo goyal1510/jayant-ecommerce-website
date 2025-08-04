@@ -1,2 +1,2 @@
-export const getBaseUrl = "https://jayant-ecommerce-website-backend.vercel.app";
+export const getBaseUrl = "https://ecommerce-backend.jayant.org.in/";
 
