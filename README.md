@@ -9,32 +9,39 @@ Jayant E-Commerce Website is a full-stack MERN (MongoDB, Express.js, React, Node
 - **Responsive Design** (Optimized for all devices)
 
 ## Future Features
-- **Payment Integration** (Implement secure payment gateways like Stripe or Razorpay)
-- **Order Processing System** (Manage and track user orders)
-- **Admin Dashboard** (Manage products, users, and orders)
-- **Product Management** (Allow admin to add, update, and delete products)
-- **Wishlist Feature** (Users can save items for later purchases)
-- **User Reviews and Ratings** (Allow users to review and rate products)
-- **Enhanced UI/UX** (Improve user experience with better animations and interactivity)
+- **Payment Integration** (Stripe / Razorpay)
+- **Order Processing System**
+- **Admin Dashboard**
+- **Product Management**
+- **Wishlist Feature**
+- **User Reviews and Ratings**
+- **Enhanced UI/UX**
 
 ## Tech Stack
-### Frontend:
+### Frontend
 - React.js
-- Redux Toolkit (for state management)
-- Tailwind CSS (for styling)
-- React Router (for navigation)
+- Redux Toolkit
+- Tailwind CSS
+- React Router
 
-### Backend:
+### Backend
 - Node.js
 - Express.js
-- MongoDB (Mongoose ODM)
-- JWT (JSON Web Token) Authentication
+- MongoDB (Mongoose)
+- JWT Authentication
+
+---
 
 ## Installation
+
 ### Prerequisites
-Make sure you have **Node.js**, **MongoDB**, and **npm** installed.
+Ensure you have the following installed:
+- **Node.js**
+- **MongoDB**
+- **npm**
 
 ### Steps to Run the Project
+
 #### 1. Clone the Repository
 ```bash
 git clone https://github.com/goyal1510/jayant-ecommerce-website.git
@@ -42,49 +49,71 @@ cd jayant-ecommerce-website
 ```
 
 #### 2. Install Dependencies
-##### Backend
+
+**Backend**
 ```bash
 cd backend
 npm install
 ```
-##### Frontend
+
+**Frontend**
 ```bash
 cd frontend
 npm install
 ```
 
 #### 3. Configure Environment Variables
-Create a `.env` file in the `backend` directory and add the following:
-```
-DB_URL = "mongodb+srv://admin:jpncqTcjg4CeSQA5@jayant-ecommerce.pldzn.mongodb.net/jayant?retryWrites=true&w=majority&appName=jayant-ecommerce"
-PORT = 5000
-JWT_SECRET = "himynameisjayant"
-FRONTEND_URL = "http://localhost:5173"
+
+Create a `.env` file inside the `backend` directory and add the following variables:
+
+```env
+DB_URL=your_mongodb_connection_string
+PORT=5000
+JWT_SECRET=your_jwt_secret
+FRONTEND_URL=http://localhost:5173
 ```
 
+> ⚠️ Never commit your `.env` file to GitHub. Make sure it is included in `.gitignore`.
+
 #### 4. Run the Application
-##### Start the Backend Server
+
+**Start Backend Server**
 ```bash
 cd backend
 npm run start:dev
 ```
-##### Start the Frontend Server
+
+**Start Frontend Server**
 ```bash
 cd frontend
 npm start
 ```
 
+---
 
 ## Screenshots
 ![Home Page](./Screenshots/Homepage.png)
 
+---
+
 ## Deployment
-🔗 Live Demo: [Jayant E-Commerce](https://jayant-ecommerce-website.vercel.app/)
-
-## Contribution
-Feel free to fork this repository and contribute to the project. Open an issue or submit a pull request with improvements.
-
-## Contact
-For any queries or suggestions, reach out at **goyal151002@gmail.com**
+🔗 **Live Demo:**  
+https://ecommerce.jayantgoyal.com/
 
 ---
+
+## Contribution
+Contributions are welcome!  
+Feel free to fork this repository, open issues, or submit pull requests.
+
+---
+
+## Contact
+For any queries or suggestions, reach out at:  
+📧 **goyal151002@gmail.com**
+
+---
+
+## Security Note
+Sensitive credentials have been removed from this repository.  
+Always use environment variables and rotate secrets if they were previously exposed.
